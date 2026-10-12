@@ -1,0 +1,754 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWebsite | Creative Web Solutions</title>
+
+    <style>
+        /* ===== GENERAL STYLING ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --navy: #101c35;
+            --blue: #087cff;
+            --cyan: #12c5ef;
+            --white: #ffffff;
+            --text: #435575;
+            --light: #f4f8ff;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--navy);
+            background: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 85px 0;
+            scroll-margin-top: 80px;
+        }
+
+        .section-label {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            margin: 10px 0 20px;
+        }
+
+        .highlight {
+            color: var(--blue);
+        }
+
+        .description {
+            color: var(--text);
+            text-align: justify;
+            max-width: 620px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        header {
+            background: rgba(16, 28, 53, 0.98);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: white;
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan);
+        }
+
+        .nav-icon {
+            margin-right: 7px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            color: white;
+            background:
+                linear-gradient(90deg,
+                    rgba(12, 29, 57, 0.97) 0%,
+                    rgba(12, 29, 57, 0.86) 48%,
+                    rgba(12, 29, 57, 0.22) 100%),
+                url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=85")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            padding: 85px 0;
+        }
+
+        .hero .section-label {
+            color: var(--cyan);
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 65px);
+            line-height: 1.12;
+            margin: 20px 0;
+            letter-spacing: -1.5px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #e0e9f8;
+            max-width: 570px;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            border: 2px solid transparent;
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(8,124,255,0.3);
+        }
+
+        .btn-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--navy);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 330px;
+            border-radius: 22px;
+            background:
+                linear-gradient(135deg,
+                    rgba(8,124,255,0.1),
+                    rgba(18,197,239,0.1)),
+                url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=85")
+                center/cover;
+            box-shadow: 18px 18px 0 #e5f1ff;
+        }
+
+        .about .btn {
+            margin-top: 25px;
+        }
+
+        /* ===== SERVICE CARDS ===== */
+        .services {
+            background: var(--light);
+        }
+
+        .center-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .center-heading .description {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            padding: 32px 27px;
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e6edfa;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(16,28,53,0.04);
+        }
+
+        .card:hover {
+            transform: translateY(-9px);
+            box-shadow: 0 18px 35px rgba(16,28,53,0.12);
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: #e5f1ff;
+            color: var(--blue);
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card:nth-child(2) .card-icon {
+            background: #f0e8ff;
+            color: #8244dc;
+        }
+
+        .card:nth-child(3) .card-icon {
+            background: #ddf8ee;
+            color: #079968;
+        }
+
+        .card h3 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text);
+            text-align: justify;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background:
+                linear-gradient(110deg,
+                    rgba(12, 29, 57, 0.97),
+                    rgba(15, 53, 92, 0.88)),
+                url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact .section-label {
+            color: var(--cyan);
+        }
+
+        .contact .description {
+            color: #dce8f8;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 22px 0;
+        }
+
+        .contact-item .icon {
+            min-width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            font-size: 21px;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 3px;
+        }
+
+        .contact-item p {
+            color: #dce8f8;
+        }
+
+        .contact-form {
+            background: white;
+            color: var(--navy);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .contact-form h3 {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 15px;
+            font: inherit;
+            font-size: 14px;
+            color: var(--navy);
+            border: 1px solid #dce5f2;
+            background: #f8faff;
+            border-radius: 9px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(8,124,255,0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0b1529;
+            color: white;
+            padding: 25px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #c7d3e7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 14px;
+        }
+
+        .social-links a:hover {
+            color: var(--cyan);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 800px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 280px;
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .navbar {
+                padding: 15px 0;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                gap: 17px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero-content {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header>
+        <nav class="navbar container">
+            <a href="#home" class="logo">&lt;/&gt; My<span>Website</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="active">⌂ Home</a></li>
+                <li><a href="#about">♙ About Us</a></li>
+                <li><a href="#contact">✉ Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <span class="section-label">Welcome to My Website</span>
+
+                <h1>
+                    Build Your Ideas<br>
+                    Into <span class="highlight">Reality</span>
+                </h1>
+
+                <p>
+                    We are passionate about creating simple, attractive,
+                    and user-friendly websites using modern web technologies.
+                    Explore our website to learn more about us and get in touch.
+                </p>
+
+                <div class="buttons">
+                    <a href="#about" class="btn btn-primary">
+                        ➤ &nbsp; Learn More
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        ✉ &nbsp; Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about" id="about">
+        <div class="container about-grid">
+            <div>
+                <span class="section-label">About Us</span>
+
+                <h2 class="section-title">
+                    Who We <span class="highlight">Are</span>
+                </h2>
+
+                <p class="description">
+                    We are a team of creative minds focused on developing
+                    modern and responsive websites. Our goal is to provide
+                    high-quality web solutions that help people and
+                    businesses grow online.
+                </p>
+
+                <p class="description" style="margin-top: 15px;">
+                    We believe that a great website should be attractive,
+                    easy to navigate, accessible, and useful on every device.
+                </p>
+
+                <a href="#services" class="btn btn-primary">
+                    Explore Services →
+                </a>
+            </div>
+
+            <div class="about-image"
+                 role="img"
+                 aria-label="Creative team working together"></div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="center-heading">
+                <span class="section-label">What We Do</span>
+
+                <h2 class="section-title">
+                    Our <span class="highlight">Services</span>
+                </h2>
+
+                <p class="description">
+                    We combine creativity and technology to create
+                    enjoyable digital experiences.
+                </p>
+            </div>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="card-icon">⌘</div>
+                    <h3>Web Development</h3>
+                    <p>
+                        We build modern and responsive websites using
+                        HTML, CSS, JavaScript, and other web technologies.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">✎</div>
+                    <h3>Creative Design</h3>
+                    <p>
+                        We design clean, beautiful, and attractive
+                        interfaces that provide a great user experience.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">♧</div>
+                    <h3>User Friendly</h3>
+                    <p>
+                        We focus on simple navigation, readable content,
+                        accessibility, and responsive layouts.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact" id="contact">
+        <div class="container contact-grid">
+            <div>
+                <span class="section-label">Contact Us</span>
+
+                <h2 class="section-title">
+                    Get in <span class="highlight">Touch</span>
+                </h2>
+
+                <p class="description">
+                    We would love to hear from you! Send us a message
+                    or reach out using the contact information below.
+                </p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="icon">⌖</div>
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>Kathmandu, Nepal</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">☎</div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+977 9800000000</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">✉</div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>example@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT FORM -->
+            <form class="contact-form" id="contactForm">
+                <h3>Send Us a Message</h3>
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name"
+                           placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email"
+                           placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message"
+                              placeholder="Write your message here..."
+                              required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    ➤ &nbsp; Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <a href="#home" class="logo">&lt;/&gt; My<span>Website</span></a>
+
+            <p>© 2026 MyWebsite. All Rights Reserved.</p>
+
+            <div class="social-links">
+                <a href="#contact" aria-label="Facebook">Facebook</a>
+                <a href="#contact" aria-label="Instagram">Instagram</a>
+                <a href="#contact" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Contact form validation
+        document.getElementById("contactForm").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+
+                if (!name || !email || !message) {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                alert("Thank you, " + name +
+                      "! Your message has been recorded.");
+
+                this.reset();
+            }
+        );
+
+        // Highlight the selected navigation link
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        navLinks.forEach(function(link) {
+            link.addEventListener("click", function() {
+                navLinks.forEach(function(item) {
+                    item.classList.remove("active");
+                });
+
+                this.classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+</html>
